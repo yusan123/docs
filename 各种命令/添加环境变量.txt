@@ -1,0 +1,42 @@
+1.修改/etc/profile文件
+(1)用文本编辑器打开/etc/profile
+(2)在profile文件末尾加入：
+JAVA_HOME=/usr/share/jdk1.5.0_05
+PATH=$JAVA_HOME/bin:$PATH
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export JAVA_HOME PATH CLASSPATH
+
+(3)source /ect/profile
+注解：
+a. 你要将 /usr/share/jdk1.5.0_05jdk 改为你的jdk安装目录
+b. linux下用冒号“:”来分隔路径
+c. $PATH / $CLASSPATH / $JAVA_HOME 是用来引用原来的环境变量的值,在设置环境变量时特别要注意不能把原来的值给覆盖掉了，这是一种常见的错误。
+d. CLASSPATH中当前目录“.”不能丢,把当前目录丢掉也是常见的错误。先在当前目录下找class,找不到再去$JAVA_HOME/lib/下找
+e. export是把这三个变量导出为全局变量。
+f. 大小写必须严格区分。
+--------------------------------------------
+2. 修改.bash_profile文件 
+这种方法更为安全，它可以把使用这些环境变量的权限控制到用户级别，如果你需要给某个用户权限使用这些环境变量，你只需要修改其个人用户主目录下的.bash_profile文件就可以了。 
+·用文本编辑器打开用户目录下的.bash_profile文件 
+·在.bash_profile文件末尾加入： 
+export JAVA_HOME=/usr/share/jdk1.6.0_14 
+export PATH=$JAVA_HOME/bin:$PATH 
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar 
+=====================================================================================================
+1. PATH环境变量。作用是指定命令搜索路径，在shell下面执行命令时，它会到PATH变量所指定的路径中查找看是否能找到相应的命令程序。我们需要把 jdk安装目录下的bin目录增加到现有的PATH变量中，bin目录中包含经常要用到的可执行文件如javac/java/javadoc等待，设置好 PATH变量后，就可以在任何目录下执行javac/java等工具了。 
+2. CLASSPATH环境变量。作用是指定类搜索路径，要使用已经编写好的类，前提当然是能够找到它们了，JVM就是通过CLASSPTH来寻找类的。我们 需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中，当然，当前目录“.”也必须加入到该变量中。 
+3. JAVA_HOME环境变量。它指向jdk的安装目录，Eclipse/NetBeans/Tomcat等软件就是通过搜索JAVA_HOME变量来找到并使用安装好的jdk。 
+
+
+
+CLASSPATH=.;%JAVA_HOME%/lib/tools.jar
+首先要注意的是最前面的".;"，如果你看不清，我给你念念——句点分号。这个是告诉JDK，搜索CLASS时先查找当前目录的CLASS文件——为什么这样搞，
+这是由于LINUX的安全机制引起的，LINUX用户很明白，WINDOWS用户就很难理解(因为WINDOWS默认的搜索顺序是先搜索当前目录的，
+再搜索系统目录的，再搜索PATH环境变量设定的) ，所以如果喜欢盘根究底的朋友不妨研究一下LINUX。
+为什么CLASSPATH后面指定了tools.jar这个具体文件？不指定行不行？显然不行，行的话我还能这么罗索嘛！:) 
+这个是由java语言的import机制和jar机制决定的，你可以查资料解决。
+在linux中，小数点“.”表示当前路径，冒号“：”在此表示分隔符。
+
+设置时可以有很多值，用分号隔开，第一个代表已经在系统内存在classpath值，这里的目的是不至于把原有的值丢失。
+第二个点号，表示当前路径，例如你自己写的程序编译后class文件就在当前路径。第三个则是jvm的类库了。
+设置Classpath的目的，在于告诉Java执行环境，在哪些目录下可以找到您所要执行的Java程序所需要的类或者包(如*.jar文件,*.class)。 

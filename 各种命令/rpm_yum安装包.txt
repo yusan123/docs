@@ -1,0 +1,7 @@
+rpm -qa |grep xxx 查看安装的rpm是否包含xxx
+rpm -e xxxx --nodeps 不管依赖删除掉xxxx
+rpm -ivh ./MySQL-server-5.1.73-1.glibc23.i386.rpm 安装本地目录下rpm包
+
+安装的位置/usr/share
+yum list |grep xxx 寻找xxx在线的安装包
+yum install xxx 安装xxx

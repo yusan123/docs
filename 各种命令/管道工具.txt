@@ -1,0 +1,2 @@
+find /home -user yu | less -N  查找文件使用less显示行号查看
+ps -ef | grep tomcat 查看tomcat相关的进程

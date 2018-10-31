@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>linux配置java环境变量(详细) - 鸿燕藏锋 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=-hy83QNg62d4qYibixJzxMJkbf1P9fTBlqv7SK5zVL01"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/coffee/bundle-coffee.css?v=NnZbvdgFaQNhu3t8P4Wsaz98sDQkgRt7Qxq2rzF0ZRU1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/coffee/bundle-coffee-mobile.css?v=EhLLUe5NHsx18JODVZscd5ef3A8WbJHKTlTvuKQjsl01"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/yjd_hycf_space/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/yjd_hycf_space/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/yjd_hycf_space/wlwmanifest.xml"/>
+<script src="//common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">var currentBlogApp = 'yjd_hycf_space', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="/bundles/blog-common.js?v=d16NGD79qD3qnJt25hXDZ2sGoojamz2W5Rl4vT0CGVg1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/yjd_hycf_space/"><img id="blogLogo" src="/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/yjd_hycf_space/">鸿燕藏锋</a></h1>
+<h2>古之立大事者，不惟有超世之才，亦必有坚韧不拔之志！</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/yjd_hycf_space/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E9%B8%BF%E7%87%95%E8%97%8F%E9%94%8B">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/yjd_hycf_space/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/yjd_hycf_space/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				<div id="blog_stats">
+<!--done-->
+随笔- 140&nbsp;
+文章- 2&nbsp;
+评论- 29&nbsp;
+</div>
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/yjd_hycf_space/p/7885099.html">linux配置java环境变量(详细)</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><strong><span style="font-size: 18pt;">linux配置java环境变量(详细)&nbsp;</span></strong></p>
+<p><br /><span style="font-size: 18px;"><strong>一. 解压安装jdk&nbsp;</strong></span><br />在shell终端下进入jdk-6u14-linux-i586.bin文件所在目录，&nbsp;<br />执行命令 ./jdk-6u14-linux-i586.bin 这时会出现一段协议，连继敲回车，当询问是否同意的时候，输入yes，回车。之后会在当前目录下生成一个jdk1.6.0_14目录，你可以将它复制到 任何一个目录下。&nbsp;<br /><br /><span style="font-size: 18px;"><strong>二. 需要配置的环境变量</strong>&nbsp;</span><br />1. PATH环境变量。作用是指定命令搜索路径，在shell下面执行命令时，它会到PATH变量所指定的路径中查找看是否能找到相应的命令程序。我们需要把 jdk安装目录下的bin目录增加到现有的PATH变量中，bin目录中包含经常要用到的可执行文件如javac/java/javadoc等待，设置好 PATH变量后，就可以在任何目录下执行javac/java等工具了。&nbsp;<br />2. CLASSPATH环境变量。作用是指定类搜索路径，要使用已经编写好的类，前提当然是能够找到它们了，JVM就是通过CLASSPTH来寻找类的。我们 需要把jdk安装目录下的lib子目录中的dt.jar和tools.jar设置到CLASSPATH中，当然，当前目录&ldquo;.&rdquo;也必须加入到该变量中。&nbsp;<br />3. JAVA_HOME环境变量。它指向jdk的安装目录，Eclipse/NetBeans/Tomcat等软件就是通过搜索JAVA_HOME变量来找到并使用安装好的jdk。&nbsp;<br /><br /><span style="font-size: 18px;"><strong>三. 三种配置环境变量的方法</strong></span></p>
+<p><span style="font-size: 15px;"><strong>1. 修改/etc/profile文件&nbsp;</strong></span></p>
+<p>如果你的计算机仅仅作为开发使用时推荐使用这种方法，因为所有用户的shell都有权使用这些环境变量，可能会给系统带来安全性问题。&nbsp;<br />&middot;用文本编辑器打开/etc/profile&nbsp;<br />&middot;在profile文件末尾加入：&nbsp;<br />export JAVA_HOME=/usr/share/jdk1.6.0_14&nbsp;<br />export PATH=$JAVA_HOME/bin:$PATH&nbsp;<br />export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar&nbsp;<br /><br />&middot;重新登录&nbsp;<br />&middot;注解&nbsp;<br />a. 你要将 /usr/share/jdk1.6.0_14改为你的jdk安装目录&nbsp;<br />b. linux下用冒号&ldquo;:&rdquo;来分隔路径&nbsp;<br />c. $PATH / $CLASSPATH / $JAVA_HOME 是用来引用原来的环境变量的值&nbsp;<br />在设置环境变量时特别要注意不能把原来的值给覆盖掉了，这是一种&nbsp;<br />常见的错误。&nbsp;<br />d. CLASSPATH中当前目录&ldquo;.&rdquo;不能丢,把当前目录丢掉也是常见的错误。&nbsp;<br />e. export是把这三个变量导出为全局变量。&nbsp;<br />f. 大小写必须严格区分。&nbsp;<br /><br /><span style="font-size: 15px;"><strong>2. 修改.bash_profile文件&nbsp;</strong></span></p>
+<p>这种方法更为安全，它可以把使用这些环境变量的权限控制到用户级别，如果你需要给某个用户权限使用这些环境变量，你只需要修改其个人用户主目录下的.bash_profile文件就可以了。&nbsp;<br />&middot;用文本编辑器打开用户目录下的.bash_profile文件&nbsp;<br />&middot;在.bash_profile文件末尾加入：&nbsp;<br /><br />export JAVA_HOME=/usr/share/jdk1.6.0_14&nbsp;<br />export PATH=$JAVA_HOME/bin:$PATH&nbsp;<br />export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar&nbsp;<br /><br />&middot;重新登录&nbsp;<br /><br /><span style="font-size: 15px;"><strong>3. 直接在shell下设置变量&nbsp;</strong></span><br />不赞成使用这种方法，因为换个shell，你的设置就无效了，因此这种方法仅仅是临时使用，以后要使用的时候又要重新设置，比较麻烦。&nbsp;<br />只需在shell终端执行下列命令：&nbsp;<br />export JAVA_HOME=/usr/share/jdk1.6.0_14&nbsp;<br />export PATH=$JAVA_HOME/bin:$PATH&nbsp;<br />export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar&nbsp;<br /><br /><span style="font-size: 18px;"><strong>四. 测试jdk&nbsp;</strong></span><br />1. 用文本编辑器新建一个<strong>Test.java</strong>文件，在其中输入以下代码并保存：&nbsp;<br />public class test {&nbsp;<br />public static void main(String args[]) {&nbsp;<br />System.out.println("A new jdk test !");&nbsp;<br />　　}&nbsp;<br />}&nbsp;<br />2. 编译：在shell终端执行命令<strong> javac Test.java&nbsp;</strong><br />3. 运行：在shell终端执行命令<strong> java Test&nbsp;</strong><br />当shell下出现<strong>&ldquo;A new jdk test !&rdquo;</strong>字样则jdk运行正常。&nbsp;<br /><br /><span style="font-size: 18px;"><strong>五. 卸载jdk&nbsp;</strong></span><br />&middot;找到<strong>jdk安装目录的_uninst子目录</strong>&nbsp;<br />&middot;在<strong>shell终端</strong>执行命令<strong>./uninstall.sh</strong>即可卸载jdk。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2017-11-23 15:26</span> <a href='http://www.cnblogs.com/yjd_hycf_space/'>鸿燕藏锋</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=7885099" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(7885099);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=345849,cb_entryId=7885099,cb_blogApp=currentBlogApp,cb_blogUserGuid='326a58bc-e318-e711-845c-ac853d9f53ac',cb_entryCreatedDate='2017/11/23 15:26:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<div id='cnblogs_c1' class='c_ad_block'></div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'></div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<DIV id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</DIV>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2018 鸿燕藏锋
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+</body>
+</html>

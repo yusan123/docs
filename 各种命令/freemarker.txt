@@ -1,0 +1,18 @@
+freemarker指令
+1.引入其他模板<#include "head.ftl">
+
+2.定义freemarker变量并将这个字符串变量转换为对象
+	<#assign imageList=goodsDesc.itemImages?eval>
+3.通过if判断是否执行，其中的代码，imageList?size获取集合的长度
+	<#if (imageList?size>0)>
+		<img jqimg="${imageList[0].url}"/>
+	</#if>
+
+4.遍历一个集合
+	<#list imageList as item>
+		<li><img src="${item.url}"/></li>
+	</#list>
+5. <#--??表示判断一个变量是否存在-->
+	<#if item.value??></#if>
+	
+6.数据模型把数据通过freemarker写入到页面js中，再通过页面获取数据，页面的动态效果就不用和数据库交互

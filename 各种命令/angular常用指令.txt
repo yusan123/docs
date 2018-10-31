@@ -1,0 +1,41 @@
+1.ng-if用来条件判断，条件为真显示，否则不显示
+	<span ng-if="x>10">哈哈</span>
+	
+2.将一个集合的值批量作为select的option选项
+	<!--option的value值  as option显示的字段 集合中的每一个对象-->
+	<select class="form-control" ng-model="entity.goods.category1Id"
+			ng-options="item.id as item.name for item in itemCat1List">
+	</select>
+	
+3.根据当前绑定的值，来判断checkbox是否要勾选
+										<!--当isEnableSpec取值为1时勾选，0时不勾选-->
+	<input type="checkbox" ng-model="isEnableSpec" ng-true-value="1" ng-true-value="0">
+
+4.根据绑定方法的返回值来判断是否勾选，返回值为true勾选，返回false不勾选
+	 ng-checked="checkAttributeValue(param)"
+
+5.{{$index=='0'?'active':''}}
+	将后台来的图片数据遍历给轮播图时，只有第一张图片的属性上class=上要加active用这种方法解决
+	
+6.<div ng-bind-html='entity.title | trustHtml'></div>，
+	entity.title接受一个字符串变量，会把这个变量的字符串通过trustHtml这个过滤器
+	过滤器会将这个代码信任后插入到div其中解析到页面
+	
+7.遍历一个对象的所有属性
+	<li ng-repeat="(key,value) in entity">{{key}}:{{value}}</li>
+	
+8.删除一个对象的属性
+	delete $scope.entity.age  删除age属性
+	delete $scope.entity[key] 动态删除key所代表的属性
+	
+	
+9.前台页码从地址栏上获取参数
+	1.http://localhost:9102/admin/goods_edit.html#?id=149187842867969   
+		angular 要给问号前加# 注意： ?前要加# ，则是 angularJS 的地址路由的书写形式
+	2.在控制器中注入$location
+	3.var id= $location.search()['id'];//获取参数值
+	
+10.使用变量表达式控制样式{{}}决定某个字符串是否显示。
+	<div class="prev  {{isRight()?'disable':''}}"></div>  该方法返回值为true则添加disable样式，否则没有
+	有点类似于ng-if=""是用来执行一个判断决定所在标签是否显示
+	但是用{{entity.status==1?'a':'b'}}可以把输出写到样式的字符串中，决定某个字符串是否显示

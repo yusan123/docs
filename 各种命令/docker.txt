@@ -1,0 +1,71 @@
+centos7
+	systemctl命令是系统服务管理器指令，它是 service 和 chkconfig 两个命令组合。
+启动docker：systemctl start docker
+停止docker：systemctl stop docker
+重启docker：systemctl restart docker
+查看docker状态：systemctl status docker
+开机启动：systemctl enable docker
+==================================================================
+docker 搬运工 码头工
+
+docker加载镜像生成得到容器，容器就是包含了特定的系统环境和软件环境的箱子，又可以从容器得到镜像方便移动。
+==================================================================
+docker相关命令
+	1.yum install docker  在线安装docker 
+	2.docker images  
+	3.docker search  镜像名称
+	4.docker pull centos:7 下载镜像
+	5.docker rmi $IMAGE_ID：删除指定镜像    docker rmi `docker images -q`：删除所有镜像
+	6.docker ps  查看正在运行的容器  -a 所有 -l 最后运行的
+	
+==================================================================
+容器操作命令
+	1.创建容器命令：docker run
+		-i：表示运行容器
+		-t：表示容器启动后会进入其命令行。加入这两个参数后，容器创建就能登录进去。即分配一个伪终端。
+		--name :为创建的容器命名。
+		-v：表示目录映射关系（前者是宿主机目录，后者是映射到宿主机上的目录），可以使用多个－v做多个目录或文件映射。
+				注意：最好做目录映射，在宿主机上做修改，然后共享到容器上。
+		-d：在run后面加上-d参数,则会创建一个守护式容器在后台运行（这样创建容器后不会自动登录容器，如果只加-i -t两个参数，创建后就会自动进去容器）。
+		-p：表示端口映射，前者是宿主机端口，后者是容器内的映射端口。可以使用多个－p做多个端口映射
+		
+		2.docker run -it --name=mycentos centos:7 /bin/bash   创建一个交互式容器
+		3.创建一个守护式容器：如果对于一个需要长期运行的容器来说，我们可以创建一个守护式容器。命令如下（容器名称不能重复）：
+			docker run -di --name=mycentos2 centos:7
+			docker exec -it container_name (或者 container_id)  /bin/bash（exit退出时，容器不会停止）
+		4.启动和停止容器
+			docker start 容器名或者id
+			docker stop 容器名或者id
+		5.宿主机和容器之间文件拷贝
+			docker cp 需要拷贝的文件或目录  容器名称:容器目录
+			docker cp 容器名称:容器目录  需要拷贝的文件或目录
+			
+		6.创建容器时挂在目录
+			docker run -di -v /usr/local/myhtml:/usr/local/myhtml --name=mycentos2  (--privileged=true) centos:7
+			如果挂在后的目录，容器不能访问的话，则加上括号内赋权的参数
+			
+		7.查看docker信息（包括ip）
+			docker inspect mycentos2 
+		
+		8.删除容器  docker rm 容器id或者容器名
+==================================================================
+容器安装常用软件
+		1.安装mysql
+			docker run -id --name=docker_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
+			docker exec -it docker_mysql /bin/bash
+		2.安装tomcat 将宿主机网页文件映射到tomcat/webapps下发布(发布的时cas登录系统，数据库连接的是，上一步安装的mysql)
+		 docker run -di --name=docker_tomcat -v /usr/local/myhtml/:/usr/local/tomcat/webapps --privileged=true -p 9000:8080 tomcat:7-jre7
+		3.安装nginx反向代理
+			docker run -di --name=docker_nginx -p 80:80 nginx 
+			修改/etc/nginx/nginx.conf时使用docker cp 复制到宿主机后，修改后，再复制回去覆盖
+		4.安装redis
+			docker run -id --name=docker_redis -p 6379:6379 redis
+			
+======================================================================
+docker将修改过后的容器保存成镜像
+	1.docker commit 容器名 保存成的镜像名
+	2.docker save -o mynginx.image mynginx   将镜像保存成文件
+	3.docker load -i mynginx.imgage   将备份的镜像文件，加载到当前docker镜像库中
+
+
+
